@@ -2,6 +2,10 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.1.1'
 	id 'io.spring.dependency-management' version '1.1.7'
+
+	// Lint + format
+	id 'com.diffplug.spotless' version '7.2.1'
+	id 'checkstyle'
 }
 
 group = 'com.example'
@@ -26,4 +30,21 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// ── Format: Spotless (Google Java Format) ─────────────────────────────
+// ./gradlew spotlessApply → format lại file; ./gradlew spotlessCheck → chỉ kiểm tra
+spotless {
+	java {
+		googleJavaFormat()
+		removeUnusedImports()
+		importOrder('java', 'javax', 'org', 'com', '')
+	}
+}
+
+// ── Lint: Checkstyle ──────────────────────────────────────────────────
+// Tự chạy trong `./gradlew build` (task check). Rules ở config/checkstyle/checkstyle.xml
+checkstyle {
+	toolVersion = '10.21.4'
+	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
 }

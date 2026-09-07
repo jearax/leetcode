@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+	"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+	"https://checkstyle.org/dtds/configuration_1_3.dtd">
+<!--
+  Lean Checkstyle config: naming, imports, bug patterns.
+  Formatting (indent, spacing) thuộc về Spotless + Google Java Format.
+  severity=error → vi phạm làm fail `./gradlew build`.
+-->
+<module name="Checker">
+	<property name="severity" value="error" />
+	<property name="charset" value="UTF-8" />
+
+	<module name="LineLength">
+		<property name="max" value="120" />
+		<property name="fileExtensions" value="java" />
+	</module>
+
+	<module name="TreeWalker">
+		<!-- Naming: package lowercase, cho phép underscore trong segment
+		     (vd com.jjuidev.jsl, problems._demo) -->
+		<module name="PackageName">
+			<property name="format" value="^[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)*$" />
+		</module>
+		<module name="TypeName" />
+		<module name="ConstantName" />
+		<module name="MemberName" />
+		<module name="LocalVariableName" />
+		<module name="ParameterName" />
+		<module name="MethodName" />
+
+		<!-- Imports -->
+		<module name="AvoidStarImport" />
+		<module name="UnusedImports" />
+		<module name="RedundantImport" />
+
+		<!-- Bug patterns -->
+		<module name="EqualsHashCode" />
+		<module name="SimplifyBooleanExpression" />
+		<module name="StringLiteralEquality" />
+		<module name="MissingSwitchDefault" />
+		<module name="FallThrough" />
+		<module name="UpperEll" />
+		<module name="EmptyStatement" />
+	</module>
+</module>
