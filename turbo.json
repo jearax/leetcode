@@ -1,120 +1,140 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local",
-    ".env",
-    "tsconfig.base.json",
-    "biome.json"
-  ],
-  "globalEnv": [
-    "NODE_ENV",
-    "CI",
-    "JAVA_HOME",
-    "GRADLE_OPTS",
-    "DOTNET_ROOT",
-    "DOTNET_CLI_TELEMETRY_OPTOUT"
-  ],
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": [
-        "src/**",
-        "app/**",
-        "lib/**",
-        "test/**",
-        "tests/**",
-        "package.json",
-        "tsconfig.json",
-        "vitest.config.*",
-        "biome.json",
-        "build.gradle",
-        "build.gradle.kts",
-        "settings.gradle",
-        "settings.gradle.kts",
-        "gradle.properties",
-        "*.csproj",
-        "*.sln",
-        "global.json"
-      ],
-      "outputs": [
-        "dist/**",
-        "build/**",
-        "target/**",
-        "bin/**",
-        "obj/**",
-        "*.class",
-        "*.jar",
-        "*.dll",
-        "*.pdb"
-      ]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "lint": {
-      "dependsOn": ["^build"],
-      "inputs": [
-        "src/**",
-        "app/**",
-        "test/**",
-        "tests/**",
-        "package.json",
-        "biome.json",
-        ".eslintrc*",
-        "eslint.config.*",
-        "build.gradle",
-        "*.csproj"
-      ],
-      "outputs": []
-    },
-    "format": {
-      "cache": false,
-      "inputs": [
-        "src/**",
-        "app/**",
-        "test/**",
-        "tests/**",
-        "biome.json"
-      ]
-    },
-    "format:check": {
-      "inputs": [
-        "src/**",
-        "app/**",
-        "test/**",
-        "tests/**",
-        "biome.json"
-      ],
-      "outputs": []
-    },
-    "test": {
-      "dependsOn": ["^build"],
-      "inputs": [
-        "src/**",
-        "app/**",
-        "test/**",
-        "tests/**",
-        "package.json",
-        "vitest.config.*",
-        "biome.json",
-        "build.gradle",
-        "*.csproj"
-      ],
-      "outputs": [
-        "coverage/**",
-        "test-results/**",
-        "build/test-results/**",
-        "build/reports/**"
-      ]
-    },
-    "test:watch": {
-      "cache": false,
-      "persistent": true
-    },
-    "clean": {
-      "cache": false,
-      "outputs": []
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": [
+		"**/.env.*local",
+		".env",
+		"tsconfig.base.json",
+		"biome.json"
+	],
+	"globalEnv": [
+		"NODE_ENV",
+		"CI",
+		"JAVA_HOME",
+		"GRADLE_OPTS",
+		"DOTNET_ROOT",
+		"DOTNET_CLI_TELEMETRY_OPTOUT"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**",
+				"app/**",
+				"lib/**",
+				"test/**",
+				"tests/**",
+				"package.json",
+				"tsconfig.json",
+				"tsconfig.build.json",
+				"vitest.config.*",
+				"biome.json",
+				"eslint.config.*",
+				".prettierrc*",
+				".husky/**",
+				"commitlint.config.*",
+				"build.gradle",
+				"build.gradle.kts",
+				"settings.gradle",
+				"settings.gradle.kts",
+				"gradle.properties",
+				"*.csproj",
+				"*.sln",
+				"global.json"
+			],
+			"outputs": [
+				"dist/**",
+				"build/**",
+				"target/**",
+				"bin/**",
+				"obj/**",
+				"*.class",
+				"*.jar",
+				"*.dll",
+				"*.pdb"
+			]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"typecheck": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**",
+				"app/**",
+				"test/**",
+				"tests/**",
+				"tsconfig.json",
+				"tsconfig.build.json"
+			],
+			"outputs": []
+		},
+		"lint": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**",
+				"app/**",
+				"test/**",
+				"tests/**",
+				"package.json",
+				"biome.json",
+				".prettierrc*",
+				"eslint.config.*",
+				".eslintrc*",
+				"build.gradle",
+				"*.csproj"
+			],
+			"outputs": []
+		},
+		"format": {
+			"cache": false,
+			"inputs": [
+				"src/**",
+				"app/**",
+				"test/**",
+				"tests/**",
+				"biome.json",
+				".prettierrc*"
+			]
+		},
+		"format:check": {
+			"inputs": [
+				"src/**",
+				"app/**",
+				"test/**",
+				"tests/**",
+				"biome.json",
+				".prettierrc*"
+			],
+			"outputs": []
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"inputs": [
+				"src/**",
+				"app/**",
+				"test/**",
+				"tests/**",
+				"package.json",
+				"vitest.config.*",
+				"biome.json",
+				"build.gradle",
+				"*.csproj"
+			],
+			"outputs": [
+				"coverage/**",
+				"test-results/**",
+				"build/test-results/**",
+				"build/reports/**"
+			]
+		},
+		"test:watch": {
+			"cache": false,
+			"persistent": true
+		},
+		"clean": {
+			"cache": false,
+			"outputs": []
+		}
+	}
 }

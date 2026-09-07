@@ -1,135 +1,114 @@
 # TypeScript Setup (`apps/ts-nodejs-leetcode`)
 
-Owner: **user (self-build)**. This guide documents the recommended scaffold
-and tools; the actual files are yours to author.
+Owner: **user (self-build)**. This guide documents the actual scaffold
+shipped in the workspace. Authored by the user; documented here so the C#
+.NET app can mirror it.
 
-## Goals
+## Stack chosen
 
-- Tight `dev` loop: edit → type-check → test, all in watch mode.
-- Single source of truth for tooling: Biome handles both formatting and lint.
-- Vitest for tests — fast, ESM-native, plays nicely with `tsx watch`.
+- Runtime: Node.js 20+
+- Language: TypeScript 5 (ESM, `type: "module"`)
+- Tests: **Vitest** (ESM-native, watch mode)
+- Format: **Prettier** (tabs, width 4)
+- Lint: **ESLint flat config** + typescript-eslint, import-x, prettier,
+  prefer-arrow-functions, autofix
+- Path alias: `@/*` → `src/*` (resolved via `tsc-alias` on build)
+- Git hooks: **Husky** + **commitlint** (TICKET-XXX or conventional) +
+  **lint-staged**
 
-## Files to create
+The original plan referenced Biome; this workspace landed on
+ESLint + Prettier + Husky because that stack is already in place and
+familiar. C# .NET setup mirrors the principle: a fast inner loop + clean
+format/lint + git hooks.
+
+## Files (shipped)
 
 ```
 apps/ts-nodejs-leetcode/
 ├── package.json
-├── tsconfig.json
-├── tsconfig.build.json
-├── vitest.config.ts
-├── biome.json
-├── .gitignore              # optional; root already covers most
-├── README.md               # already exists
-└── src/
-    ├── problems/
-    │   └── _template/      # already exists
-    └── index.ts            # optional entry point
+├── tsconfig.json              # type-check only, no emit
+├── tsconfig.build.json        # emits dist/, used by build script
+├── vitest.config.ts           # test discovery + coverage + alias
+├── eslint.config.mjs          # flat config
+├── .prettierrc.json           # tabs + width 4
+├── commitlint.config.mjs      # TICKET-XXX | conventional
+├── .husky/
+│   ├── pre-commit             # lint-staged
+│   └── commit-msg             # commitlint
+├── .gitignore
+├── src/
+│   ├── index.ts               # ad-hoc demo entry, used by `dev:run`
+│   └── problems/
+│       ├── _template/         # reference shape (do not edit)
+│       ├── _demo/             # safe playground (excluded from tests)
+│       └── <id>-<slug>/       # real problems
+└── test/                      # mirror of src/, alt location for tests
 ```
 
-## `package.json` (sketch)
+## Scripts (root + per-app)
 
-```json
-{
-  "name": "ts-nodejs-leetcode",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc -p tsconfig.build.json",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
-    "format:check": "biome format .",
-    "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist .turbo coverage"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.0",
-    "tsx": "^4.19.0",
-    "typescript": "^5.6.0",
-    "vitest": "^2.1.0"
-  }
-}
-```
+| Script                | Effect                                                |
+| --------------------- | ----------------------------------------------------- |
+| `pnpm --filter ... dev`     | `vitest --watch` — hot reload tests on save.    |
+| `pnpm --filter ... dev:run` | `tsx watch src/index.ts` — hot reload demo.     |
+| `pnpm --filter ... build`   | `tsc -p tsconfig.build.json && tsc-alias …` — emit to `dist/`. |
+| `pnpm --filter ... test`    | `vitest run` — one-shot.                       |
+| `pnpm --filter ... test:watch` | `vitest --watch` — alias of `dev`.           |
+| `pnpm --filter ... typecheck` | `tsc --noEmit`                              |
+| `pnpm --filter ... lint`    | `eslint .`                                     |
+| `pnpm --filter ... lint:fix`| `eslint . --fix`                                |
+| `pnpm --filter ... format`  | ESLint --fix + Prettier --write                |
+| `pnpm --filter ... format:check` | Prettier --check                          |
+| `pnpm --filter ... clean`   | removes `dist/`, `.turbo/`, `coverage/`.        |
 
-## `tsconfig.json` (sketch)
+Root shortcuts: `pnpm dev:ts`, `pnpm test:ts`, `pnpm build:ts`,
+`pnpm typecheck`, etc.
 
-```json
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "lib": ["ES2022"],
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "exactOptionalPropertyTypes": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": true
-  },
-  "include": ["src/**/*", "test/**/*", "vitest.config.ts"],
-  "exclude": ["node_modules", "dist"]
-}
-```
+## Hot reload flow
 
-`tsconfig.build.json` extends `tsconfig.json` with `noEmit: false`,
-`declaration: true`, `outDir: "dist"`, `exclude: ["test/**", "vitest.config.ts"]`.
-
-## `vitest.config.ts` (sketch)
-
-```ts
-import { defineConfig } from "vitest/config";
-
-export default defineConfig({
-  test: {
-    include: ["src/**/*.test.ts", "test/**/*.test.ts"],
-    coverage: { reporter: ["text", "html"], exclude: ["**/_template/**"] },
-  },
-});
-```
-
-## `biome.json` (sketch)
-
-```json
-{
-  "$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
-  "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 100 },
-  "linter": { "rules": { "recommended": true } },
-  "javascript": { "formatter": { "quoteStyle": "double", "semicolons": "asNeeded" } },
-  "files": { "ignore": ["dist", "coverage", ".turbo"] }
-}
-```
-
-## Workflow
-
-```bash
-pnpm --filter ts-nodejs-leetcode dev          # watch + run current example
-pnpm --filter ts-nodejs-leetcode test:watch   # re-run tests on save
-pnpm --filter ts-nodejs-leetcode format       # format whole app
-pnpm --filter ts-nodejs-leetcode lint:fix     # auto-fix lint issues
-pnpm --filter ts-nodejs-leetcode build        # produce dist/
-```
-
-Or from the root:
-
-```bash
-pnpm dev:ts
-pnpm test:ts
-```
+1. `pnpm --filter ts-nodejs-leetcode dev` — Vitest reruns the affected test
+   on save. This is the primary inner loop for LeetCode practice.
+2. `pnpm --filter ts-nodejs-leetcode dev:run` — tsx watch reruns
+   `src/index.ts`. Edit `src/index.ts` to point at any problem file and
+   watch the demo run on save.
+3. `pnpm --filter ts-nodejs-leetcode typecheck` — quick type-check, no emit.
 
 ## Adding a problem
 
 ```bash
 mkdir apps/ts-nodejs-leetcode/src/problems/0001-two-sum
 $EDITOR apps/ts-nodejs-leetcode/src/problems/0001-two-sum/solution.ts
+$EDITOR apps/ts-nodejs-leetcode/src/problems/0001-two-sum/solution.test.ts
 ```
 
-The test file is `solution.test.ts`; place it next to `solution.ts` so Vitest
-picks it up automatically.
+The test file is `solution.test.ts` next to `solution.ts`; Vitest picks it
+up automatically. `_template/` shows the canonical shape; `_demo/` is a
+safe playground excluded from coverage.
+
+## Format / lint conventions
+
+- Prettier tabs (width 4), singleQuote, no semicolons, no trailing commas,
+  lineWidth 120. Root `.editorconfig` matches.
+- ESLint enforces: arrow functions, import ordering, no-unused-vars
+  (allow `_` prefix), consistent-type-imports, no-duplicates, padding lines
+  around blocks. Prettier is the source of truth for formatting — ESLint
+  defers to it via `eslint-config-prettier`.
+
+## Git hooks
+
+- `pre-commit` → `lint-staged` → runs ESLint --fix + Prettier --write on
+  staged files; reformats `package.json` via `prettier-package-json`.
+- `commit-msg` → `commitlint` → header must match `TICKET-<n> - <desc>` or
+  conventional `<type>[(<scope>)][:!]: <desc>`.
+
+## Notes for the C# mirror
+
+When building `apps/csharp-dotnet-leetcode/` later, the same principles
+apply:
+
+- inner loop = `dotnet watch test`
+- format = `dotnet format`
+- lint = Roslynator + `dotnet format --verify-no-changes`
+- git hooks are optional in C#; pre-commit framework is not standard in
+  .NET. Replicate the lint-staged idea with a `dotnet format --verify-no-changes`
+  check in CI.
