@@ -8,9 +8,10 @@
  * with `solution.ts` and `solution.test.ts`. This file is the entry point
  * for ad-hoc demos — point it at any problem you want to inspect.
  */
-import { solve as solveTwoSum } from './problems/_demo/solution.js';
+import { solve as solveTwoSum } from './problems/_demo/solution.js'
 
-const input = [2, 7, 11, 15];
-const target = 9;
-console.log('two-sum input:', input, 'target:', target);
-console.log('two-sum output:', solveTwoSum(input, target));
+const input = [2, 7, 11, 15]
+const target = 9
+
+console.log('two-sum input:', input, 'target:', target)
+console.log('two-sum output:', solveTwoSum(input, target))

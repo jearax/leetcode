@@ -1,52 +1,38 @@
 {
-	"name": "ts-nodejs-leetcode",
-	"version": "1.0.0",
-	"description": "TypeScript (Node.js) workspace for LeetCode practice.",
-	"type": "module",
-	"main": "dist/index.js",
-	"scripts": {
-		"dev": "vitest --watch",
-		"dev:run": "tsx watch src/index.ts",
-		"build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-		"test": "vitest run",
-		"test:watch": "vitest --watch",
-		"typecheck": "tsc --noEmit",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"format": "eslint --fix \"{src,test}/**/*.{js,ts,jsx,tsx}\" \"*.{ts,mjs,cjs}\" && prettier --write \"{src,test}/**/*.{js,ts,jsx,tsx,json,md}\" \"*.{ts,mjs,cjs,json,md}\"",
-		"format:check": "prettier --check \"{src,test}/**/*.{js,ts,jsx,tsx,json,md}\" \"*.{ts,mjs,cjs,json,md}\"",
-		"clean": "rm -rf dist .turbo coverage .tsbuild *.tsbuildinfo",
-		"prepare": "husky"
-	},
-	"lint-staged": {
-		"{src,test}/**/*.{ts,tsx,js,jsx}": [
-			"eslint --fix",
-			"prettier --write"
-		],
-		"package.json": [
-			"pnpm dlx prettier-package-json@^2.8.0 --write"
-		]
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^21.2.2",
-		"@commitlint/config-conventional": "^21.2.2",
-		"@eslint/js": "^10.0.1",
-		"@types/node": "^26.4.1",
-		"@typescript-eslint/eslint-plugin": "^8.69.0",
-		"@typescript-eslint/parser": "^8.69.0",
-		"eslint": "^10.10.0",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-autofix": "^2.2.0",
-		"eslint-plugin-import-x": "^4.17.1",
-		"eslint-plugin-prefer-arrow-functions": "^3.10.2",
-		"eslint-plugin-prettier": "^5.5.6",
-		"globals": "^17.12.0",
-		"husky": "^9.1.7",
-		"lint-staged": "^17.5.0",
-		"prettier": "^3.9.6",
-		"tsc-alias": "^1.9.4",
-		"tsx": "^4.19.0",
-		"typescript": "^5.9.3",
-		"vitest": "^2.1.0"
-	}
+  "name": "ts-nodejs-leetcode",
+  "version": "1.0.0",
+  "description": "TypeScript (Node.js) workspace for LeetCode practice.",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "clean": "rm -rf dist .turbo coverage .tsbuild *.tsbuildinfo",
+    "dev": "vitest --watch",
+    "dev:run": "tsx watch src/index.ts",
+    "format": "eslint --fix \"{src,test}/**/*.{js,ts,jsx,tsx}\" \"*.{ts,mjs,cjs}\" && prettier --write \"{src,test}/**/*.{js,ts,jsx,tsx,json,md}\" \"*.{ts,mjs,cjs,json,md}\"",
+    "format:check": "prettier --check \"{src,test}/**/*.{js,ts,jsx,tsx,json,md}\" \"*.{ts,mjs,cjs,json,md}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.4.1",
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-autofix": "^2.2.0",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-prefer-arrow-functions": "^3.10.2",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.6",
+    "tsc-alias": "^1.9.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.0"
+  }
 }

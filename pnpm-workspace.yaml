@@ -1,5 +1,9 @@
 packages:
   - "apps/*"
   - "packages/*"
+
+# Approve postinstall scripts for these packages. Required for vitest
+# (uses esbuild native binary) and turbo prune (uses unrs-resolver).
 allowBuilds:
-  unrs-resolver: set this to true or false
+  esbuild: true
+  unrs-resolver: true

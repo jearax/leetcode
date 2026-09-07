@@ -7,13 +7,19 @@
  * Time:  O(n) — single hash-map pass.
  * Space: O(n) — store seen values + their indices.
  */
-export function solve(nums: number[], target: number): [number, number] {
-	const seen = new Map<number, number>();
+export const solve = (nums: number[], target: number): [number, number] => {
+	const seen = new Map<number, number>()
+
 	for (let i = 0; i < nums.length; i++) {
-		const complement = target - nums[i] as number;
-		const j = seen.get(complement);
-		if (j !== undefined) return [j, i];
-		seen.set(nums[i] as number, i);
+		const complement = (target - nums[i]) as number
+		const j = seen.get(complement)
+
+		if (j !== undefined) {
+			return [j, i]
+		}
+
+		seen.set(nums[i] as number, i)
 	}
-	throw new Error('no pair found');
+
+	throw new Error('no pair found')
 }

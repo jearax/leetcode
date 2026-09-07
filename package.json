@@ -32,11 +32,32 @@
     "typecheck": "turbo run typecheck",
     "graph": "turbo run graph --filter=./apps/*",
     "prune": "turbo prune --scope=ts-nodejs-leetcode",
-    "diff": "turbo run build --summarize --dry=json"
+    "diff": "turbo run build --summarize --dry=json",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "apps/ts-nodejs-leetcode/src/**/*.{ts,tsx,js,jsx}": [
+      "pnpm --filter ts-nodejs-leetcode exec eslint --fix",
+      "pnpm --filter ts-nodejs-leetcode exec prettier --write"
+    ],
+    "apps/ts-nodejs-leetcode/test/**/*.{ts,tsx,js,jsx}": [
+      "pnpm --filter ts-nodejs-leetcode exec eslint --fix",
+      "pnpm --filter ts-nodejs-leetcode exec prettier --write"
+    ],
+    "apps/ts-nodejs-leetcode/*.{ts,mjs,cjs,json,md}": [
+      "pnpm --filter ts-nodejs-leetcode exec prettier --write"
+    ],
+    "apps/*/package.json": [
+      "pnpm dlx prettier-package-json@^2.8.0 --write"
+    ]
   },
   "devDependencies": {
-    "turbo": "^2.3.0",
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.0",
     "prettier": "^3.4.0",
+    "turbo": "^2.3.0",
     "typescript": "^5.6.0"
   }
 }
