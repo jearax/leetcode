@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "java-spring-leetcode",
+  "version": "0.0.0",
+  "description": "Java + Spring Boot workspace for LeetCode practice.",
+  "scripts": {
+    "build": "./gradlew build",
+    "clean": "./gradlew clean",
+    "dev": "./gradlew --continuous test",
+    "dev:run": "./gradlew bootRun",
+    "format": "./gradlew spotlessApply",
+    "format:check": "./gradlew spotlessCheck",
+    "lint": "./gradlew checkstyleMain checkstyleTest",
+    "test": "./gradlew test",
+    "test:watch": "./gradlew --continuous test",
+    "typecheck": "./gradlew classes"
+  }
+}
