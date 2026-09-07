@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "csharp-dotnet-leetcode",
+  "version": "0.0.0",
+  "description": "C# .NET workspace for LeetCode practice.",
+  "scripts": {
+    "build": "dotnet build Leetcode.slnx",
+    "clean": "dotnet clean Leetcode.slnx",
+    "dev": "dotnet watch run --project src",
+    "format": "dotnet format Leetcode.slnx",
+    "lint": "dotnet format Leetcode.slnx --verify-no-changes",
+    "test": "dotnet test Leetcode.slnx",
+    "test:watch": "dotnet watch test --project tests",
+    "typecheck": "dotnet build Leetcode.slnx"
+  }
+}
