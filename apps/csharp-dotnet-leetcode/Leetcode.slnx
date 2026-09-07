@@ -2,7 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Leetcode.csproj" />
   </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/Leetcode.Tests.csproj" />
+  <Folder Name="/test/">
+    <Project Path="test/Leetcode.Tests.csproj" />
   </Folder>
 </Solution>
