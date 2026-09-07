@@ -1,39 +1,48 @@
 {
+  "private": true,
   "name": "leetcode-monorepo",
   "version": "0.1.0",
-  "private": true,
   "description": "LeetCode practice monorepo - 3 language environments (TypeScript, Java Spring, C# .NET)",
-  "packageManager": "pnpm@11.24.0",
+  "scripts": {
+    "build": "turbo run build",
+    "build:all": "turbo run build --filter=./apps/*",
+    "build:cs": "turbo run build --filter=csharp-dotnet-leetcode",
+    "build:java": "turbo run build --filter=java-spring-leetcode",
+    "build:ts": "turbo run build --filter=ts-nodejs-leetcode",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "dev": "turbo run dev --concurrency=20",
+    "dev:cs": "turbo run dev --filter=csharp-dotnet-leetcode --concurrency=20",
+    "dev:java": "turbo run dev --filter=java-spring-leetcode --concurrency=20",
+    "dev:ts": "turbo run dev --filter=ts-nodejs-leetcode --concurrency=20",
+    "diff": "turbo run build --summarize --dry=json",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "format:pkg": "pnpm dlx prettier-package-json@^2.8.0 --write && pnpm -r --if-present format:pkg",
+    "graph": "turbo run graph --filter=./apps/*",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
+    "prepare": "husky",
+    "prune": "turbo prune --scope=ts-nodejs-leetcode",
+    "reset": "pnpm clean && pnpm install",
+    "test": "turbo run test",
+    "test:cs": "turbo run test --filter=csharp-dotnet-leetcode",
+    "test:java": "turbo run test --filter=java-spring-leetcode",
+    "test:ts": "turbo run test --filter=ts-nodejs-leetcode",
+    "test:watch": "turbo run test:watch --concurrency=20",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.0",
+    "prettier": "^3.4.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.0"
+  },
   "engines": {
     "node": ">=20",
     "pnpm": ">=9"
-  },
-  "scripts": {
-    "build": "turbo run build",
-    "build:ts": "turbo run build --filter=ts-nodejs-leetcode",
-    "build:java": "turbo run build --filter=java-spring-leetcode",
-    "build:cs": "turbo run build --filter=csharp-dotnet-leetcode",
-    "build:all": "turbo run build --filter=./apps/*",
-    "dev": "turbo run dev --concurrency=20",
-    "dev:ts": "turbo run dev --filter=ts-nodejs-leetcode --concurrency=20",
-    "dev:java": "turbo run dev --filter=java-spring-leetcode --concurrency=20",
-    "dev:cs": "turbo run dev --filter=csharp-dotnet-leetcode --concurrency=20",
-    "lint": "turbo run lint",
-    "lint:fix": "turbo run lint -- --fix",
-    "format": "turbo run format",
-    "format:check": "turbo run format:check",
-    "test": "turbo run test",
-    "test:watch": "turbo run test:watch --concurrency=20",
-    "test:ts": "turbo run test --filter=ts-nodejs-leetcode",
-    "test:java": "turbo run test --filter=java-spring-leetcode",
-    "test:cs": "turbo run test --filter=csharp-dotnet-leetcode",
-    "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "reset": "pnpm clean && pnpm install",
-    "typecheck": "turbo run typecheck",
-    "graph": "turbo run graph --filter=./apps/*",
-    "prune": "turbo prune --scope=ts-nodejs-leetcode",
-    "diff": "turbo run build --summarize --dry=json",
-    "prepare": "husky"
   },
   "lint-staged": {
     "apps/ts-nodejs-leetcode/src/**/*.{ts,tsx,js,jsx}": [
@@ -51,13 +60,5 @@
       "pnpm dlx prettier-package-json@^2.8.0 --write"
     ]
   },
-  "devDependencies": {
-    "@commitlint/cli": "^21.2.2",
-    "@commitlint/config-conventional": "^21.2.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.5.0",
-    "prettier": "^3.4.0",
-    "turbo": "^2.3.0",
-    "typescript": "^5.6.0"
-  }
+  "packageManager": "pnpm@11.24.0"
 }

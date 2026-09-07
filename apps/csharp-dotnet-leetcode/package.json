@@ -8,6 +8,7 @@
     "clean": "dotnet clean Leetcode.slnx",
     "dev": "dotnet watch run --project src",
     "format": "dotnet format Leetcode.slnx",
+    "format:pkg": "pnpm dlx prettier-package-json@^2.8.0 --write",
     "lint": "dotnet format Leetcode.slnx --verify-no-changes",
     "test": "dotnet test Leetcode.slnx",
     "test:watch": "dotnet watch test --project test",

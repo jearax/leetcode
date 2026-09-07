@@ -9,6 +9,7 @@
     "dev": "./gradlew run --continuous",
     "format": "./gradlew spotlessApply",
     "format:check": "./gradlew spotlessCheck",
+    "format:pkg": "pnpm dlx prettier-package-json@^2.8.0 --write",
     "lint": "./gradlew checkstyleMain checkstyleTest",
     "test": "./gradlew test",
     "test:watch": "./gradlew --continuous test",
