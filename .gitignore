@@ -23,7 +23,10 @@ test-results/
 
 # IDE
 .idea/
-.vscode/
+# Ignore mọi thứ trong .vscode trừ shared settings (pattern .vscode/*
+# thay vì .vscode/ để dòng negate bên dưới có tác dụng)
+.vscode/*
+!.vscode/settings.json
 *.iml
 *.swp
 .DS_Store
