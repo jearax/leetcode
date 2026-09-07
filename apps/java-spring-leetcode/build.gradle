@@ -32,11 +32,13 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// ── Format: Spotless (Google Java Format) ─────────────────────────────
+// ── Format: Spotless (Eclipse formatter, tab 2-space) ─────────────────
 // ./gradlew spotlessApply → format lại file; ./gradlew spotlessCheck → chỉ kiểm tra
+// Cùng 1 config/eclipse-java-format.xml với .vscode/settings.json →
+// format-on-save trong VS Code ra output y hệt Spotless.
 spotless {
 	java {
-		googleJavaFormat()
+		eclipse().configFile('config/eclipse-java-format.xml')
 		removeUnusedImports()
 		importOrder('java', 'javax', 'org', 'com', '')
 	}

@@ -1,22 +1,16 @@
 root = true
 
+# Toàn repo: indent bằng TAB, 1 tab = 2 space.
+# Java: formatter thật sự là config/eclipse-java-format.xml (dùng chung
+# Spotless + VS Code) — .editorconfig này nhất quán với nó.
 [*]
-indent_style = space
+indent_style = tab
 indent_size = 2
+tab_width = 2
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
-
-[*.{ts,tsx,js,jsx,mjs,cjs}]
-indent_style = tab
-indent_size = 4
-
-[*.{java,kt}]
-indent_size = 4
-
-[*.cs]
-indent_size = 4
 
 [*.{md,markdown}]
 trim_trailing_whitespace = false
