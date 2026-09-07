@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./gradlew build",
     "clean": "./gradlew clean",
-    "dev": "./gradlew bootRun",
+    "dev": "./gradlew bootRun --continuous",
     "format": "./gradlew spotlessApply",
     "format:check": "./gradlew spotlessCheck",
     "lint": "./gradlew checkstyleMain checkstyleTest",
