@@ -1,0 +1,42 @@
+{
+  "name": "leetcode-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LeetCode practice monorepo - 3 language environments (TypeScript, Java Spring, C# .NET)",
+  "packageManager": "pnpm@11.24.0",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "build:ts": "turbo run build --filter=ts-leetcode",
+    "build:java": "turbo run build --filter=java-spring-leetcode",
+    "build:cs": "turbo run build --filter=csharp-dotnet-leetcode",
+    "build:all": "turbo run build --filter=./apps/*",
+    "dev": "turbo run dev --concurrency=20",
+    "dev:ts": "turbo run dev --filter=ts-leetcode --concurrency=20",
+    "dev:java": "turbo run dev --filter=java-spring-leetcode --concurrency=20",
+    "dev:cs": "turbo run dev --filter=csharp-dotnet-leetcode --concurrency=20",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch --concurrency=20",
+    "test:ts": "turbo run test --filter=ts-leetcode",
+    "test:java": "turbo run test --filter=java-spring-leetcode",
+    "test:cs": "turbo run test --filter=csharp-dotnet-leetcode",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "reset": "pnpm clean && pnpm install",
+    "typecheck": "turbo run typecheck",
+    "graph": "turbo run graph --filter=./apps/*",
+    "prune": "turbo prune --scope=ts-leetcode",
+    "diff": "turbo run build --summarize --dry=json"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "prettier": "^3.4.0",
+    "typescript": "^5.6.0"
+  }
+}
