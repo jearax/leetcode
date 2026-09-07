@@ -1,9 +1,0 @@
-{
-  "java.compile.nullAnalysis.mode": "automatic",
-  "java.configuration.updateBuildConfiguration": "automatic",
-
-  // Cùng 1 file XML với Spotless (apps/java-spring-leetcode/build.gradle)
-  // → format-on-save ra output y hệt ./gradlew spotlessApply (tab, 1 tab = 2 space).
-  "java.format.settings.url": "./apps/java-spring-leetcode/config/eclipse-java-format.xml",
-  "java.format.settings.profile": "GoogleStyle"
-}
