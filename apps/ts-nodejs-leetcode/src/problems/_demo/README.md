@@ -22,6 +22,6 @@ src/problems/
 ## Run
 
 ```bash
-pnpm dev:run        # hot reload index.ts (uses this problem)
+pnpm dev            # hot reload src/main.ts (uses this problem)
 pnpm test:watch     # hot reload vitest; remove _demo from exclude to try
 ```
