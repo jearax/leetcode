@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { solve } from '@/problems/0001-two-sum/solution.js'
+import { solve } from '@/problems/_0001_two_sum/solution.js'
 
 describe('0001 two-sum', () => {
 	it('returns the indices that sum to the target', () => {
