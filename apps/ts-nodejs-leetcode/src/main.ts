@@ -15,3 +15,5 @@ const target = 9
 
 console.log('two-sum input:', input, 'target:', target)
 console.log('two-sum output:', solveTwoSum(input, target))
+
+console.log(918)

@@ -7,8 +7,7 @@ const vitestConfig = defineConfig({
 		}
 	},
 	test: {
-		include: ['src/**/*.test.ts', 'test/**/*.test.ts'],
-		exclude: ['node_modules', 'dist', '.turbo', '**/_template/**'],
+		include: ['test/**/*.test.ts'],
 		coverage: {
 			provider: 'v8',
 			reporter: ['text', 'html'],
