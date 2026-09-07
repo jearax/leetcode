@@ -1,27 +1,35 @@
 # _demo (two-sum)
 
-Demo problem scaffold for the workspace. Excluded from `vitest` runs and
-coverage so it does not skew metrics while you experiment.
+Demo problem — safe playground.
 
-## Shape
+## Shape (test mirror layout — same model as java and csharp apps)
 
 ```
 src/problems/
 ├── _template/                 # reference shape — never edit
 │   └── README.md
-├── _demo/                     # this folder — safe playground
+├── _demo/                     # this folder
 │   ├── solution.ts
-│   ├── solution.test.ts
 │   └── README.md
 └── <id>-<slug>/
     ├── solution.ts
-    ├── solution.test.ts
     └── README.md              # optional per-problem notes
+
+test/problems/                 # mirrors src/problems paths
+├── _demo/
+│   └── solution.test.ts
+└── <id>-<slug>/
+    └── solution.test.ts
 ```
+
+Import trong test dùng alias: `@/problems/_demo/solution.js`.
 
 ## Run
 
 ```bash
-pnpm dev            # hot reload src/main.ts (uses this problem)
-pnpm test:watch     # hot reload vitest; remove _demo from exclude to try
+pnpm dev            # watch src/main.ts (uses this problem)
+pnpm test:watch     # watch vitest — demo test chạy thật (2 tests)
 ```
+
+Demo test chạy trong `vitest` như test thường; chỉ bị loại khỏi
+coverage metrics.
