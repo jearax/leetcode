@@ -18,7 +18,7 @@ Practice LeetCode while:
 ```
 .
 ├── apps/
-│   ├── ts-leetcode/              # TypeScript workspace (user-built)
+│   ├── ts-nodejs-leetcode/       # TypeScript (Node.js) workspace (user-built)
 │   ├── java-spring-leetcode/     # Java + Spring Boot workspace (user-built)
 │   └── csharp-dotnet-leetcode/   # C# + .NET workspace (Claude-built)
 ├── docs/                        # Durable documentation
@@ -40,19 +40,19 @@ pnpm run format            # format all apps
 pnpm run test              # test all apps
 ```
 
-Per-app commands (replace `<app>` with `ts-leetcode | java-spring-leetcode | csharp-dotnet-leetcode`):
+Per-app commands (replace `<app>` with `ts-nodejs-leetcode | java-spring-leetcode | csharp-dotnet-leetcode`):
 
 ```bash
 pnpm --filter <app> <task>
 # example
-pnpm --filter ts-leetcode test:watch
+pnpm --filter ts-nodejs-leetcode test:watch
 ```
 
 ## Status
 
 | App                       | Owner | State                |
 | ------------------------- | ----- | -------------------- |
-| `ts-leetcode`             | user  | empty skeleton       |
+| `ts-nodejs-leetcode`      | user  | empty skeleton       |
 | `java-spring-leetcode`    | user  | empty skeleton       |
 | `csharp-dotnet-leetcode`  | claude| empty skeleton       |
 

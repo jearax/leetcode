@@ -1,4 +1,4 @@
-# ts-leetcode
+# ts-nodejs-leetcode
 
 TypeScript workspace for LeetCode practice.
 
@@ -22,17 +22,17 @@ User (self-build). Reference implementation for the C# .NET workspace.
 ## Planned Commands
 
 ```bash
-pnpm --filter ts-leetcode dev      # watch mode
-pnpm --filter ts-leetcode test     # run tests
-pnpm --filter ts-leetcode test:watch
-pnpm --filter ts-leetcode lint
-pnpm --filter ts-leetcode format
+pnpm --filter ts-nodejs-leetcode dev      # watch mode
+pnpm --filter ts-nodejs-leetcode test     # run tests
+pnpm --filter ts-nodejs-leetcode test:watch
+pnpm --filter ts-nodejs-leetcode lint
+pnpm --filter ts-nodejs-leetcode format
 ```
 
 ## Structure (target)
 
 ```
-ts-leetcode/
+ts-nodejs-leetcode/
 ├── src/
 │   └── problems/
 │       └── <id>-<slug>/

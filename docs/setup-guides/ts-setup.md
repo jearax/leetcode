@@ -1,4 +1,4 @@
-# TypeScript Setup (`apps/ts-leetcode`)
+# TypeScript Setup (`apps/ts-nodejs-leetcode`)
 
 Owner: **user (self-build)**. This guide documents the recommended scaffold
 and tools; the actual files are yours to author.
@@ -12,7 +12,7 @@ and tools; the actual files are yours to author.
 ## Files to create
 
 ```
-apps/ts-leetcode/
+apps/ts-nodejs-leetcode/
 ├── package.json
 ├── tsconfig.json
 ├── tsconfig.build.json
@@ -30,7 +30,7 @@ apps/ts-leetcode/
 
 ```json
 {
-  "name": "ts-leetcode",
+  "name": "ts-nodejs-leetcode",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -110,11 +110,11 @@ export default defineConfig({
 ## Workflow
 
 ```bash
-pnpm --filter ts-leetcode dev          # watch + run current example
-pnpm --filter ts-leetcode test:watch   # re-run tests on save
-pnpm --filter ts-leetcode format       # format whole app
-pnpm --filter ts-leetcode lint:fix     # auto-fix lint issues
-pnpm --filter ts-leetcode build        # produce dist/
+pnpm --filter ts-nodejs-leetcode dev          # watch + run current example
+pnpm --filter ts-nodejs-leetcode test:watch   # re-run tests on save
+pnpm --filter ts-nodejs-leetcode format       # format whole app
+pnpm --filter ts-nodejs-leetcode lint:fix     # auto-fix lint issues
+pnpm --filter ts-nodejs-leetcode build        # produce dist/
 ```
 
 Or from the root:
@@ -127,8 +127,8 @@ pnpm test:ts
 ## Adding a problem
 
 ```bash
-mkdir apps/ts-leetcode/src/problems/0001-two-sum
-$EDITOR apps/ts-leetcode/src/problems/0001-two-sum/solution.ts
+mkdir apps/ts-nodejs-leetcode/src/problems/0001-two-sum
+$EDITOR apps/ts-nodejs-leetcode/src/problems/0001-two-sum/solution.ts
 ```
 
 The test file is `solution.test.ts`; place it next to `solution.ts` so Vitest

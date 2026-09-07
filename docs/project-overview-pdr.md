@@ -14,7 +14,7 @@ Two learning goals run in parallel:
 
 ## Scope (in)
 
-- Three language workspaces (`apps/ts-leetcode`, `apps/java-spring-leetcode`,
+- Three language workspaces (`apps/ts-nodejs-leetcode`, `apps/java-spring-leetcode`,
   `apps/csharp-dotnet-leetcode`).
 - Per-app: build, format, lint, test, watch.
 - One workspace root with pnpm + Turborepo orchestration and shared scripts.
@@ -29,7 +29,7 @@ Two learning goals run in parallel:
 
 | App                       | Owner | Reason                                                |
 | ------------------------- | ----- | ----------------------------------------------------- |
-| `ts-leetcode`             | user  | Primary language — fastest iteration, anchor for C#.   |
+| `ts-nodejs-leetcode`      | user  | Primary language — fastest iteration, anchor for C#.  |
 | `java-spring-leetcode`    | user  | Re-activate Java; learn Spring Boot idioms.            |
 | `csharp-dotnet-leetcode`  | claude| Reference built from the user-built TS + Java apps.   |
 

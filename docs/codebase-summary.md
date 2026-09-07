@@ -5,7 +5,7 @@
 ```
 .
 ├── apps/                            # language workspaces
-│   ├── ts-leetcode/                 # user-built (TS)
+│   ├── ts-nodejs-leetcode/          # user-built (TS)
 │   ├── java-spring-leetcode/        # user-built (Java + Spring)
 │   └── csharp-dotnet-leetcode/      # Claude-built (C# + .NET)
 ├── docs/                            # durable docs
@@ -37,7 +37,7 @@
 Each app is self-contained. The owner (user or Claude) builds the per-app
 tooling; turbo orchestrates via the root.
 
-### `apps/ts-leetcode`
+### `apps/ts-nodejs-leetcode`
 
 - Owner: user (self-build).
 - Target stack: TypeScript 5, tsx watch, Vitest, Biome.
@@ -64,7 +64,7 @@ tooling; turbo orchestrates via the root.
 | Script              | Effect                                                   |
 | ------------------- | -------------------------------------------------------- |
 | `pnpm build`        | `turbo run build` — builds all apps with cache.          |
-| `pnpm build:ts`     | builds only `ts-leetcode`.                               |
+| `pnpm build:ts`     | builds only `ts-nodejs-leetcode`.                     |
 | `pnpm build:java`   | builds only `java-spring-leetcode`.                      |
 | `pnpm build:cs`     | builds only `csharp-dotnet-leetcode`.                    |
 | `pnpm dev`          | starts all `dev` tasks (TS watch, dotnet watch, etc.).   |

@@ -1,7 +1,7 @@
 # C# .NET Setup (`apps/csharp-dotnet-leetcode`)
 
 Owner: **Claude (agent-build)**. This guide documents the scaffold Claude
-will produce once the user-built `ts-leetcode` and `java-spring-leetcode`
+will produce once the user-built `ts-nodejs-leetcode` and `java-spring-leetcode`
 apps exist as references.
 
 ## Goals
