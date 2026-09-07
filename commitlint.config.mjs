@@ -1,4 +1,6 @@
 /** Conventional commits config for the whole monorepo. */
-export default {
+const commitlintConfig = {
 	extends: ['@commitlint/config-conventional']
 }
+
+export default commitlintConfig

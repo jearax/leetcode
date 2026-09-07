@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config'
 
-export default defineConfig({
+const vitestConfig = defineConfig({
 	resolve: {
 		alias: {
 			'@': new URL('./src', import.meta.url).pathname
@@ -17,3 +17,5 @@ export default defineConfig({
 		watch: true
 	}
 })
+
+export default vitestConfig
