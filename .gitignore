@@ -63,3 +63,7 @@ obj/
 # Misc
 *.tsbuildinfo
 .fake
+
+# Session / working docs (regenerated locally, not source of truth)
+plans/
+docs/
