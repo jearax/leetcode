@@ -37,7 +37,7 @@ tasks.named('test') {
 
 spotless {
 	java {
-		googleJavaFormat()
+		eclipse().configFile(rootProject.file('config/eclipse/eclipse-formatter.xml'))
 		removeUnusedImports()
 		importOrder('java', 'javax', 'org', 'com', '')
 	}
