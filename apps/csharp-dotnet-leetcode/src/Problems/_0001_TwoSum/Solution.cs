@@ -49,7 +49,18 @@ public class Solution
 	/// <exception cref="ArgumentException">Khi không tồn tại cặp hợp lệ.</exception>
 	public int[] Solve(int[] nums, int target)
 	{
-		throw new NotImplementedException("chưa giải — implement tại đây");
+		for (int i = 0; i < nums.Length; i++)
+		{
+			for (int j = i + 1; j < nums.Length; j++)
+			{
+				if (nums[i] + nums[j] == target)
+				{
+					return [i, j];
+				}
+			}
+		}
+
+		throw new ArgumentException("Constraints guarantee that there is exactly one solution.");
 	}
 
 	/// <summary>
@@ -57,7 +68,8 @@ public class Solution
 	///
 	/// Ý tưởng: cặp (value, originalIndex) rồi sort theo value; hai con trỏ
 	/// đi từ hai đầu, nếu tổng nhỏ thì tăng trái, lớn thì giảm phải; trả về
-	/// originalIndex để giữ đúng thứ tự gốc.
+	/// originalIndex của cặp tìm được — thứ tự bám theo value đã sort nên
+	/// KHÔNG đảm bảo tăng dần (vd nums=[7,2], target=9 → trả [1,0]).
 	///
 	/// ⏱ Time: O(n·log n) · 💾 Space: O(n).
 	/// </summary>
@@ -67,7 +79,30 @@ public class Solution
 	/// <exception cref="ArgumentException">Khi không tồn tại cặp hợp lệ.</exception>
 	public int[] Solve2(int[] nums, int target)
 	{
-		throw new NotImplementedException("chưa giải — implement tại đây");
+		int[][] numsWithIndices = [.. nums.Select((value, index) => new int[] { value, index })];
+		Array.Sort(numsWithIndices, (a, b) => a[0].CompareTo(b[0]));
+
+		int left = 0, right = nums.Length - 1;
+		while (left < right)
+		{
+			int sum = numsWithIndices[left][0] + numsWithIndices[right][0];
+
+			if (sum < target)
+			{
+				left++;
+			}
+			else if (sum > target)
+			{
+				right--;
+			}
+			else
+			{
+				return [numsWithIndices[left][1], numsWithIndices[right][1]];
+			}
+
+		}
+
+		throw new ArgumentException("Constraints guarantee that there is exactly one solution.");
 	}
 
 	/// <summary>
@@ -84,6 +119,21 @@ public class Solution
 	/// <exception cref="ArgumentException">Khi không tồn tại cặp hợp lệ.</exception>
 	public int[] Solve3(int[] nums, int target)
 	{
-		throw new NotImplementedException("chưa giải — implement tại đây");
+		var valueToIndex = new Dictionary<int, int>();
+
+		for (int i = 0; i < nums.Length; i++)
+		{
+			int complement = target - nums[i];
+			bool isComplementExist = valueToIndex.TryGetValue(complement, out int j);
+
+			if (isComplementExist)
+			{
+				return [i, j];
+			}
+
+			valueToIndex[nums[i]] = i;
+		}
+
+		throw new ArgumentException("Constraints guarantee that there is exactly one solution.");
 	}
 }

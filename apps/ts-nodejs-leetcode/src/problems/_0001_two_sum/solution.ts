@@ -45,7 +45,15 @@
  * @throws Error khi không tồn tại cặp nào hợp lệ
  */
 export const solve = (nums: number[], target: number): [number, number] => {
-	throw new Error('chưa giải — implement tại đây')
+	for (let i = 0; i < nums.length; i++) {
+		for (let j = i + 1; j < nums.length; j++) {
+			if (nums[i] + nums[j] === target) {
+				return [i, j]
+			}
+		}
+	}
+
+	throw new Error('Constraints guarantee that there is exactly one solution.')
 }
 
 /**
@@ -53,7 +61,8 @@ export const solve = (nums: number[], target: number): [number, number] => {
  *
  * Ý tưởng: cặp (value, originalIndex) rồi sort theo value; hai con trỏ
  * đi từ hai đầu, nếu tổng nhỏ thì tăng trái, lớn thì giảm phải; trả về
- * originalIndex để giữ đúng thứ tự gốc.
+ * originalIndex của cặp tìm được — thứ tự bám theo value đã sort nên
+ * KHÔNG đảm bảo tăng dần (vd nums=[7,2], target=9 → trả [1,0]).
  *
  * ⏱ Time: O(n·log n) · 💾 Space: O(n)
  *
@@ -63,7 +72,30 @@ export const solve = (nums: number[], target: number): [number, number] => {
  * @throws Error khi không tồn tại cặp nào hợp lệ
  */
 export const solve2 = (nums: number[], target: number): [number, number] => {
-	throw new Error('chưa giải — implement tại đây')
+	const numsWithIndices = nums.map((value, index) => {
+		return [value, index]
+	})
+
+	numsWithIndices.sort((a, b) => {
+		return a[0] - b[0]
+	})
+
+	let left = 0,
+		right = numsWithIndices.length - 1
+
+	while (left < right) {
+		const sum = numsWithIndices[left][0] + numsWithIndices[right][0]
+
+		if (sum === target) {
+			return [numsWithIndices[left][1], numsWithIndices[right][1]]
+		} else if (sum < target) {
+			left++
+		} else {
+			right--
+		}
+	}
+
+	throw new Error('Constraints guarantee that there is exactly one solution.')
 }
 
 /**
@@ -80,5 +112,18 @@ export const solve2 = (nums: number[], target: number): [number, number] => {
  * @throws Error khi không tồn tại cặp nào hợp lệ
  */
 export const solve3 = (nums: number[], target: number): [number, number] => {
-	throw new Error('chưa giải — implement tại đây')
+	const valueToIndex = new Map<number, number>()
+
+	for (let i = 0; i < nums.length; i++) {
+		const complement = target - nums[i]
+		const j = valueToIndex.get(complement)
+
+		if (j !== undefined) {
+			return [i, j]
+		}
+
+		valueToIndex.set(nums[i], i)
+	}
+
+	throw new Error('Constraints guarantee that there is exactly one solution.')
 }

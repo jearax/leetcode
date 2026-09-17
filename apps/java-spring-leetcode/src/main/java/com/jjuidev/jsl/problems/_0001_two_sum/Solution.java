@@ -1,5 +1,11 @@
 package com.jjuidev.jsl.problems._0001_two_sum;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.IntStream;
+
 /* ═══════════════════════════════════════════════════════════════════════
  * 🧩 LEETCODE #0001 · TWO SUM · Easy
  * 🔗 https://leetcode.com/problems/two-sum/
@@ -52,7 +58,15 @@ public class Solution {
    *           khi không tồn tại cặp hợp lệ.
    */
   public int[] solve(int[] nums, int target) {
-    throw new IllegalArgumentException("chưa giải — implement tại đây");
+    for (int i = 0; i < nums.length; i++) {
+      for (int j = i + 1; j < nums.length; j++) {
+        if (nums[i] + nums[j] == target) {
+          return new int[]{ i, j };
+        }
+      }
+    }
+
+    throw new IllegalArgumentException("Constraints guarantee that there is exactly one solution.");
   }
 
   /**
@@ -60,7 +74,8 @@ public class Solution {
    *
    * Ý tưởng: cặp (value, originalIndex) rồi sort theo value; hai con trỏ đi từ
    * hai đầu, nếu tổng nhỏ thì tăng trái, lớn thì giảm phải; trả về originalIndex
-   * để giữ đúng thứ tự gốc.
+   * của cặp tìm được — thứ tự bám theo value đã sort nên KHÔNG đảm bảo tăng dần
+   * (vd nums=[7,2], target=9 → trả [1,0]).
    *
    * ⏱ Time: O(n·log n) · 💾 Space: O(n).
    *
@@ -73,7 +88,24 @@ public class Solution {
    *           khi không tồn tại cặp hợp lệ.
    */
   public int[] solve2(int[] nums, int target) {
-    throw new IllegalArgumentException("chưa giải — implement tại đây");
+    int[][] numsWithIndices = IntStream.range(0, nums.length).mapToObj(i -> new int[]{ nums[i], i })
+        .toArray(int[][]::new); // n -> new int[n][]
+
+    Arrays.sort(numsWithIndices, Comparator.comparingInt(a -> a[0]));
+
+    int left = 0, right = nums.length - 1;
+    while (left < right) {
+      int sum = numsWithIndices[left][0] + numsWithIndices[right][0];
+      if (sum == target) {
+        return new int[]{ numsWithIndices[left][1], numsWithIndices[right][1] };
+      } else if (sum < target) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+
+    throw new IllegalArgumentException("Constraints guarantee that there is exactly one solution.");
   }
 
   /**
@@ -93,6 +125,19 @@ public class Solution {
    *           khi không tồn tại cặp hợp lệ.
    */
   public int[] solve3(int[] nums, int target) {
-    throw new IllegalArgumentException("chưa giải — implement tại đây");
+    Map<Integer, Integer> valueToIndex = new HashMap<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      int complement = target - nums[i];
+      Integer j = valueToIndex.get(complement);
+
+      if (j != null) {
+        return new int[]{ i, j };
+      }
+
+      valueToIndex.put(nums[i], i);
+    }
+
+    throw new IllegalArgumentException("Constraints guarantee that there is exactly one solution.");
   }
 }

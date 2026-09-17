@@ -1,3 +1,5 @@
+import { solve } from './problems/_0001_two_sum/solution'
+
 /**
  * LeetCode practice entry point.
  *
@@ -8,4 +10,4 @@
  * with `solution.ts` and `solution.test.ts`. Point this file at any
  * problem you want to inspect once problems are scaffolded.
  */
-console.log('leer — no problems scaffolded yet')
+console.log('0001 two-sum:', solve([2, 7, 11, 15], 9))
