@@ -99,6 +99,7 @@ const eslintConfig = [
 			'prettier/prettier': 'error',
 
 			// Others rules
+			'prefer-const': 'error',
 			'no-undef': 'off',
 			'no-redeclare': 'off',
 			'no-import-assign': 'off',
