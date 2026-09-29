@@ -1,12 +1,12 @@
-import js from '@eslint/js'
-import tsParser from '@typescript-eslint/parser'
-import tsPlugin from '@typescript-eslint/eslint-plugin'
-import eslintConfigPrettier from 'eslint-config-prettier'
-import pluginImportX from 'eslint-plugin-import-x'
-import pluginAutofix from 'eslint-plugin-autofix'
-import pluginPreferArrowFunctions from 'eslint-plugin-prefer-arrow-functions'
-import pluginPrettier from 'eslint-plugin-prettier'
-import globals from 'globals'
+import js from '@eslint/js';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import pluginImportX from 'eslint-plugin-import-x';
+import pluginAutofix from 'eslint-plugin-autofix';
+import pluginPreferArrowFunctions from 'eslint-plugin-prefer-arrow-functions';
+import pluginPrettier from 'eslint-plugin-prettier';
+import globals from 'globals';
 
 const eslintConfig = [
 	{
@@ -133,6 +133,6 @@ const eslintConfig = [
 			]
 		}
 	}
-]
+];
 
-export default eslintConfig
+export default eslintConfig;

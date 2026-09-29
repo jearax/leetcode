@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vitest/config';
 
 const vitestConfig = defineConfig({
 	resolve: {
@@ -15,6 +15,6 @@ const vitestConfig = defineConfig({
 		},
 		watch: true
 	}
-})
+});
 
-export default vitestConfig
+export default vitestConfig;

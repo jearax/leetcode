@@ -45,22 +45,22 @@
  * @returns true nếu n là palindrome, ngược lại false
  */
 export const solve = (n: number): boolean => {
-	const nString = n.toString()
+	const nString = n.toString();
 
-	let i = 0
-	let j = nString.length - 1
+	let i = 0;
+	let j = nString.length - 1;
 
 	while (i < j) {
 		if (nString[i] !== nString[j]) {
-			return false
+			return false;
 		}
 
-		i++
-		j--
+		i++;
+		j--;
 	}
 
-	return true
-}
+	return true;
+};
 
 /**
  * 🧠 Cách 2 — Reverse Full Number (toán học)
@@ -75,21 +75,21 @@ export const solve = (n: number): boolean => {
  */
 export const solve2 = (n: number): boolean => {
 	if (n < 0) {
-		return false
+		return false;
 	}
 
-	const original = n
-	let reversed = 0
+	const original = n;
+	let reversed = 0;
 
 	while (n > 0) {
-		const digital = n % 10
+		const digital = n % 10;
 
-		reversed = reversed * 10 + digital
-		n = Math.trunc(n / 10)
+		reversed = reversed * 10 + digital;
+		n = Math.trunc(n / 10);
 	}
 
-	return reversed === original
-}
+	return reversed === original;
+};
 
 /**
  * 🧠 Cách 3 — Reverse Half Number
@@ -104,21 +104,21 @@ export const solve2 = (n: number): boolean => {
  */
 export const solve3 = (n: number): boolean => {
 	if (n < 0) {
-		return false
+		return false;
 	}
 
 	if (n % 10 === 0 && n !== 0) {
-		return false
+		return false;
 	}
 
-	let reversed = 0
+	let reversed = 0;
 
 	while (n > reversed) {
-		const digital = n % 10
+		const digital = n % 10;
 
-		reversed = reversed * 10 + digital
-		n = Math.trunc(n / 10)
+		reversed = reversed * 10 + digital;
+		n = Math.trunc(n / 10);
 	}
 
-	return n === reversed || n === Math.trunc(reversed / 10)
-}
+	return n === reversed || n === Math.trunc(reversed / 10);
+};

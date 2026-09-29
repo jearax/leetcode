@@ -1,26 +1,26 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest';
 
-import { solve, solve2, solve3 } from '@/problems/_0001_two_sum/solution.js'
+import { solve, solve2, solve3 } from '@/problems/_0001_two_sum/solution.js';
 
 const solves = {
 	solve,
 	solve2,
 	solve3
-} as const
+} as const;
 
 /**
  * Đề bài ghi rõ "You can return the answer in any order", nên [0,1] và [1,0]
  * đều hợp lệ. Chuẩn hoá cặp index về thứ tự tăng dần trước khi so sánh, để
  * test bám đúng yêu cầu của đề thay vì chặt hơn.
  */
-const pair = (indices: [number, number]): number[] => [...indices].sort((a, b) => a - b)
+const pair = (indices: [number, number]): number[] => [...indices].sort((a, b) => a - b);
 
 type Case = {
-	about: string
-	nums: number[]
-	target: number
-	expected: number[]
-}
+	about: string;
+	nums: number[];
+	target: number;
+	expected: number[];
+};
 
 /**
  * Mỗi case chỉ có đúng một cặp hợp lệ, đúng ràng buộc của đề. `about` ghi lại
@@ -93,7 +93,7 @@ const cases: Case[] = [
 		target: 2_000_000_000,
 		expected: [0, 1]
 	}
-]
+];
 
 const throwCases: Omit<Case, 'expected'>[] = [
 	{
@@ -106,35 +106,35 @@ const throwCases: Omit<Case, 'expected'>[] = [
 		nums: [5, 1, 4],
 		target: 10
 	}
-]
+];
 
 describe('0001 two-sum', () => {
 	for (const [name, solveFn] of Object.entries(solves)) {
 		describe(name, () => {
 			for (const { about, nums, target, expected } of cases) {
 				it(`${about} — nums=[${nums}] target=${target}`, () => {
-					expect(pair(solveFn([...nums], target))).toEqual(expected)
-				})
+					expect(pair(solveFn([...nums], target))).toEqual(expected);
+				});
 			}
 
 			for (const { about, nums, target } of throwCases) {
 				it(`ném lỗi khi ${about}`, () => {
-					expect(() => solveFn([...nums], target)).toThrow()
-				})
+					expect(() => solveFn([...nums], target)).toThrow();
+				});
 			}
 
 			it('không làm thay đổi mảng đầu vào', () => {
-				const nums = [3, 2, 4]
+				const nums = [3, 2, 4];
 
 				try {
-					solveFn(nums, 6)
+					solveFn(nums, 6);
 				} catch {
 					// Lời giải đúng hay sai đã có các case phía trên canh. Nuốt lỗi ở đây
 					// để test này chỉ đỏ vì đúng lý do của nó: đầu vào bị sửa.
 				}
 
-				expect(nums).toEqual([3, 2, 4])
-			})
-		})
+				expect(nums).toEqual([3, 2, 4]);
+			});
+		});
 	}
-})
+});

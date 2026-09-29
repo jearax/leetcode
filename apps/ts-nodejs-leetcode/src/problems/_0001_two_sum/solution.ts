@@ -48,13 +48,13 @@ export const solve = (nums: number[], target: number): [number, number] => {
 	for (let i = 0; i < nums.length; i++) {
 		for (let j = i + 1; j < nums.length; j++) {
 			if (nums[i] + nums[j] === target) {
-				return [i, j]
+				return [i, j];
 			}
 		}
 	}
 
-	throw new Error('Constraints guarantee that there is exactly one solution.')
-}
+	throw new Error('Constraints guarantee that there is exactly one solution.');
+};
 
 /**
  * 🧠 Cách 2 — Sort + Two Pointers
@@ -73,30 +73,30 @@ export const solve = (nums: number[], target: number): [number, number] => {
  */
 export const solve2 = (nums: number[], target: number): [number, number] => {
 	const numsWithIndices = nums.map((value, index) => {
-		return [value, index]
-	})
+		return [value, index];
+	});
 
 	numsWithIndices.sort((a, b) => {
-		return a[0] - b[0]
-	})
+		return a[0] - b[0];
+	});
 
 	let left = 0,
-		right = numsWithIndices.length - 1
+		right = numsWithIndices.length - 1;
 
 	while (left < right) {
-		const sum = numsWithIndices[left][0] + numsWithIndices[right][0]
+		const sum = numsWithIndices[left][0] + numsWithIndices[right][0];
 
 		if (sum === target) {
-			return [numsWithIndices[left][1], numsWithIndices[right][1]]
+			return [numsWithIndices[left][1], numsWithIndices[right][1]];
 		} else if (sum < target) {
-			left++
+			left++;
 		} else {
-			right--
+			right--;
 		}
 	}
 
-	throw new Error('Constraints guarantee that there is exactly one solution.')
-}
+	throw new Error('Constraints guarantee that there is exactly one solution.');
+};
 
 /**
  * 🧠 Cách 3 — Hash Table (một lượt duyệt)
@@ -112,18 +112,18 @@ export const solve2 = (nums: number[], target: number): [number, number] => {
  * @throws Error khi không tồn tại cặp nào hợp lệ
  */
 export const solve3 = (nums: number[], target: number): [number, number] => {
-	const valueToIndex = new Map<number, number>()
+	const valueToIndex = new Map<number, number>();
 
 	for (let i = 0; i < nums.length; i++) {
-		const complement = target - nums[i]
-		const j = valueToIndex.get(complement)
+		const complement = target - nums[i];
+		const j = valueToIndex.get(complement);
 
 		if (j !== undefined) {
-			return [i, j]
+			return [i, j];
 		}
 
-		valueToIndex.set(nums[i], i)
+		valueToIndex.set(nums[i], i);
 	}
 
-	throw new Error('Constraints guarantee that there is exactly one solution.')
-}
+	throw new Error('Constraints guarantee that there is exactly one solution.');
+};

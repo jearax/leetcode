@@ -1,4 +1,4 @@
-import { solve } from './problems/_0009_palindrome_number/solution'
+import { solve } from './problems/_0009_palindrome_number/solution';
 
 /**
  * LeetCode practice entry point.
@@ -10,4 +10,4 @@ import { solve } from './problems/_0009_palindrome_number/solution'
  * with `solution.ts` and `solution.test.ts`. Point this file at any
  * problem you want to inspect once problems are scaffolded.
  */
-console.log('0009:', solve(123454321))
+console.log('0009:', solve(123454321));
